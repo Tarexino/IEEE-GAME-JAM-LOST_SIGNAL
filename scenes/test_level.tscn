@@ -467,7 +467,7 @@ shape = SubResource("SegmentShape2D_fptmo")
 one_way_collision = true
 
 [node name="Player" parent="." instance=ExtResource("1_2venv")]
-position = Vector2(871, 159)
+position = Vector2(117, 53)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -618,10 +618,6 @@ text = "Ready"
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_ahbqi")]
 visible = false
 theme = SubResource("Theme_4asn1")
-
-[node name="ProjectileEmitter" parent="CanvasLayer" instance=ExtResource("12_fyxdr")]
-position = Vector2(799, 28)
-direction = Vector2(1, 1)
 
 [connection signal="switch_turned_off" from="Switch" to="." method="_on_switch_switch_turned_off"]
 [connection signal="main_door_switch_turned_on" from="MainDoorSwitch" to="." method="_on_main_door_switch_main_door_switch_turned_on"]

@@ -51,6 +51,18 @@ tracks/2/keys = {
 "times": PackedFloat32Array(1)
 }
 tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.566667, 19.0333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-16, 1215), Vector2(-16, -100)]
+}
 
 [sub_resource type="Animation" id="Animation_ya6b3"]
 length = 0.001
@@ -77,6 +89,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-16, 1215)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_611wi"]
@@ -106,15 +130,16 @@ layout_mode = 2
 texture = ExtResource("1_nvx42")
 
 [node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-16, 1215)
 
 [node name="Panel" type="Panel" parent="Node2D"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 61.0
-offset_top = 77.0
-offset_right = 916.0
-offset_bottom = 875.0
+offset_left = 58.0
+offset_top = -296.0
+offset_right = 913.0
+offset_bottom = 870.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_ya6b3")
@@ -122,14 +147,37 @@ theme_override_styles/panel = ExtResource("4_611wi")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Node2D/Panel"]
 layout_mode = 0
+offset_left = 27.0
+offset_top = 9.0
 offset_right = 692.0
-offset_bottom = 446.0
+offset_bottom = 1023.0
+
+[node name="Credits" type="Label" parent="Node2D/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_0b11s")
+theme_override_font_sizes/font_size = 40
+text = "CREDITS"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Node2D/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 800)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 25
-text = "The quarks were fixed. Jolly received his corporate ping: \"Signal stable. Good work.\"
+text = "
+Game developed by Team Vault Dwellers
+
+   Game Design : Mohammad Fauzan and Abdul Basit Yahya
+   Level design : Abdul Basit Yahya
+               Story : Ahmad Zakariya
+   Programming : Mohammad Fauzan
+                  Art : Mohammad Fauzan and Abdul Basit Yahya
+ Support and Management : Ahmad Zakariya
+
+
+
+
+
+The quarks were fixed. Jolly received his corporate ping: \"Signal stable. Good work.\"
 
 Job done.
 
@@ -144,16 +192,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "
 
-CORPORATE FEEDBACK STREAM: INTERRUPTED"
+     CORPORATE FEEDBACK STREAM: INTERRUPTED"
 
-[node name="Label2" type="Label" parent="Node2D"]
-offset_left = 163.0
-offset_top = 576.0
-offset_right = 423.0
-offset_bottom = 616.0
+[node name="Label2" type="Label" parent="Node2D/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
 theme_override_fonts/font = ExtResource("5_0b11s")
 theme_override_font_sizes/font_size = 40
-text = "TO BE CONTINUED.."
+text = "
+TO BE CONTINUED.."
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -173,5 +220,6 @@ offset_bottom = 644.0
 text = "Finish"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.085
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
