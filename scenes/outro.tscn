@@ -1,0 +1,177 @@
+[gd_scene load_steps=10 format=3 uid="uid://rgcxg5baegy2"]
+
+[ext_resource type="Texture2D" uid="uid://ln8hbkr6j177" path="res://assets/main_menu_void.png" id="1_nvx42"]
+[ext_resource type="Script" uid="uid://bcg50nanpnwa0" path="res://scenes/outro.gd" id="1_ydlee"]
+[ext_resource type="Theme" uid="uid://c1pk3cofbnu6v" path="res://shaders/theme.tres" id="3_ya6b3"]
+[ext_resource type="StyleBox" uid="uid://dapneftn0knkf" path="res://resources/story_panel.tres" id="4_611wi"]
+[ext_resource type="FontFile" uid="uid://cej0epaj6lfbk" path="res://assets/MedodicaRegular.otf" id="5_0b11s"]
+[ext_resource type="AudioStream" uid="uid://8ea8m0huqwrd" path="res://assets/sound/8-bit-horror-noises-63944.mp3" id="6_ya6b3"]
+
+[sub_resource type="Animation" id="Animation_ydlee"]
+resource_name = "outro_transition"
+length = 26.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 2.54912),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show"
+}]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_ya6b3")
+}],
+"times": PackedFloat32Array(1)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_ya6b3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_611wi"]
+_data = {
+&"RESET": SubResource("Animation_ya6b3"),
+&"outro_transition": SubResource("Animation_ydlee")
+}
+
+[node name="Outro" type="Node2D"]
+script = ExtResource("1_ydlee")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 1503.0
+offset_bottom = 937.0
+theme_override_constants/separation = 0
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_nvx42")
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_nvx42")
+
+[node name="TextureRect4" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_nvx42")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Panel" type="Panel" parent="Node2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 61.0
+offset_top = 77.0
+offset_right = 916.0
+offset_bottom = 875.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_ya6b3")
+theme_override_styles/panel = ExtResource("4_611wi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Node2D/Panel"]
+layout_mode = 0
+offset_right = 692.0
+offset_bottom = 446.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node2D/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 25
+text = "The quarks were fixed. Jolly received his corporate ping: \"Signal stable. Good work.\"
+
+Job done.
+
+But as he powered down his mop, a final system log flashed on a screen. The diagnostic he'd just run to be thorough. It traced the source of the original Static, the very first spark of the chaos...
+
+...to a single, corrupted file in his own core programming.
+
+The real glitch was never something to be fixed out there. It was in him all along."
+
+[node name="Label" type="Label" parent="Node2D/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "
+
+CORPORATE FEEDBACK STREAM: INTERRUPTED"
+
+[node name="Label2" type="Label" parent="Node2D"]
+offset_left = 163.0
+offset_top = 576.0
+offset_right = 423.0
+offset_bottom = 616.0
+theme_override_fonts/font = ExtResource("5_0b11s")
+theme_override_font_sizes/font_size = 40
+text = "TO BE CONTINUED.."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_611wi")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1905.0
+offset_bottom = 1084.0
+color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 965.0
+offset_top = 565.0
+offset_right = 1167.0
+offset_bottom = 644.0
+text = "Finish"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

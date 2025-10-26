@@ -25,3 +25,6 @@ func emit_projectile():
 
 func _on_timer_timeout() -> void:
 	emit_projectile()
+
+func stop_emission():
+	timer.stop()

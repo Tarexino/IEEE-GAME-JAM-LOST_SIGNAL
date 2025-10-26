@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	if is_repaired:
 		sprite.frame = 1
 	# To check if repaired
-	if sprite.frame == 2 and Input.is_action_just_pressed("ui_accept") and Global.absorbed_projectiles > 0:
+	if sprite.frame == 2 and Input.is_action_just_pressed("interact") and Global.absorbed_projectiles > 0:
 		obtained_charges += 1
 		Global.absorbed_projectiles -= 1
 		$AudioStreamPlayer2D.play()

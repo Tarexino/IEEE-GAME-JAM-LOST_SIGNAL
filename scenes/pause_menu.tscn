@@ -16,7 +16,7 @@ size_flags_vertical = 3
 theme = ExtResource("1_myx47")
 script = ExtResource("1_n87rw")
 
-[node name="PanelContainer2" type="PanelContainer" parent="."]
+[node name="Main" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,36 +24,87 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="PanelContainer2"]
+[node name="ColorRect" type="ColorRect" parent="Main"]
 modulate = Color(1, 1, 1, 0.215686)
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer2"]
+[node name="PanelContainer" type="PanelContainer" parent="Main"]
 modulate = Color(0.986752, 0.986752, 0.986752, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/PanelContainer"]
 layout_mode = 2
 
-[node name="ResumeButton" type="Button" parent="PanelContainer2/PanelContainer/VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="Main/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 theme = ExtResource("1_myx47")
 text = "Resume"
 
-[node name="QuitToMainMenu" type="Button" parent="PanelContainer2/PanelContainer/VBoxContainer"]
+[node name="ControlsButton" type="Button" parent="Main/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
-text = "Quit To Main Menu
+text = "Controls
 "
 
-[node name="QuitGame" type="Button" parent="PanelContainer2/PanelContainer/VBoxContainer"]
+[node name="QuitGame" type="Button" parent="Main/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 text = "Quit Game"
 
-[connection signal="pressed" from="PanelContainer2/PanelContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="PanelContainer2/PanelContainer/VBoxContainer/QuitToMainMenu" to="." method="_on_quit_to_main_menu_pressed"]
-[connection signal="pressed" from="PanelContainer2/PanelContainer/VBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]
+[node name="ControlsPage" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="ControlsPage"]
+modulate = Color(1, 1, 1, 0.215686)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ControlsPage"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Header" type="Label" parent="ControlsPage/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "
+
+CONTROLS"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ControlsPage/VBoxContainer"]
+custom_minimum_size = Vector2(1000, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 30
+text = "
+WASD: Move
+
+Spacebar: Radar pulse
+
+E: Interact
+
+Shift: Absorbing mode"
+
+[node name="BackButton" type="Button" parent="ControlsPage/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
+[connection signal="pressed" from="Main/PanelContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Main/PanelContainer/VBoxContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="Main/PanelContainer/VBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]
+[connection signal="pressed" from="ControlsPage/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
