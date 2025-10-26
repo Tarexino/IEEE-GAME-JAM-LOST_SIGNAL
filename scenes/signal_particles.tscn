@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfcvlljt4xq43"]
+
+[ext_resource type="Texture2D" uid="uid://m84ebvf7tdeb" path="res://assets/signal.png" id="1_5gkre"]
+[ext_resource type="Script" uid="uid://b506phgu33ssp" path="res://scripts/signal_particles.gd" id="1_ft55g"]
+[ext_resource type="FontFile" uid="uid://cej0epaj6lfbk" path="res://assets/MedodicaRegular.otf" id="3_pjtfw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nhxoo"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ft55g"]
+radius = 6.08276
+
+[sub_resource type="Theme" id="Theme_lleo4"]
+default_font = ExtResource("3_pjtfw")
+
+[node name="SignalParticle" type="Area2D"]
+visible = false
+collision_layer = 8
+script = ExtResource("1_ft55g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nhxoo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5gkre")
+hframes = 2
+vframes = 2
+
+[node name="InteractArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+shape = SubResource("CircleShape2D_ft55g")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+offset_right = 4.0
+offset_bottom = 27.0
+theme = SubResource("Theme_lleo4")
+step = 1.0
+
+[connection signal="body_entered" from="InteractArea" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="InteractArea" to="." method="_on_interact_area_body_exited"]

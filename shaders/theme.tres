@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c1pk3cofbnu6v"]
+
+[ext_resource type="FontFile" uid="uid://cej0epaj6lfbk" path="res://assets/MedodicaRegular.otf" id="1_8wm3j"]
+
+[resource]
+default_font = ExtResource("1_8wm3j")
+default_font_size = 20
