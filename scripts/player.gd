@@ -25,6 +25,8 @@ var is_radar_active: bool = false
 var is_radar_pulse_active : bool = false
 var distortion : int = 0
 var absorbed_projectile_count : int = 0
+var max_absorbed_projectile_count : int = 5
+var dmg_multiplier : float = 0.0
 
 
 func _ready() -> void:
@@ -40,6 +42,7 @@ func _process(delta: float) -> void:
 		for signal_particle in radar_detections_list:
 			if not signal_particle.is_repaired:
 				signal_particle.hide()
+	absorbed_projectile_count = Global.absorbed_projectiles
 
 
 func _physics_process(delta: float) -> void:
@@ -97,13 +100,11 @@ func _on_cooldown_timer_timeout() -> void:
 
 func _on_radar_area_area_entered(area: Area2D) -> void:
 	if area is SignalParticle:
-		print("detected")
 		radar_detections_list.append(area)
 
 
 func _on_radar_area_area_exited(area: Area2D) -> void:
 	if area is SignalParticle and area in radar_detections_list:
-		print("signal left")
 		radar_detections_list.erase(area)
 
 
@@ -114,6 +115,9 @@ func _on_pulse_duration_timer_timeout() -> void:
 
 func take_damage(damage):
 	distortion += damage
+	
+func take_damage_during_absorption(damage):
+	distortion += damage * dmg_multiplier
 
 
 func _on_absorb_timer_timeout() -> void:

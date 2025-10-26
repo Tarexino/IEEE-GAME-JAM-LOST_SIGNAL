@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://cn3g8ihjuuyeu"]
+
+[ext_resource type="Script" uid="uid://2duup65qmui5" path="res://scripts/game_over_screen.gd" id="1_61w2s"]
+[ext_resource type="FontFile" uid="uid://cej0epaj6lfbk" path="res://assets/MedodicaRegular.otf" id="1_iwahs"]
+[ext_resource type="AudioStream" uid="uid://b01t02kdch1k6" path="res://assets/sound/windows-error-sound-effect-35894.mp3" id="3_jw6e5"]
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_61w2s")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PanelContainer"]
+layout_mode = 2
+color = Color(0.166315, 8.44544e-07, 0.00125148, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Header" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_iwahs")
+theme_override_font_sizes/font_size = 60
+text = "ROBOT MALFUNCTIONED..."
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_iwahs")
+theme_override_font_sizes/font_size = 20
+text = "The rorbot started to have hallucinations because of increased distortions. 
+Now it imagines drinling tea with his friends and bunking repair sessions in an endless slumber...
+
+
+"
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_iwahs")
+theme_override_font_sizes/font_size = 20
+text = "Game Over"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jw6e5")
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

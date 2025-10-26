@@ -18,9 +18,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_repaired:
 		sprite.frame = 1
+	# To check if repaired
 	if sprite.frame == 2 and Input.is_action_just_pressed("ui_accept") and Global.absorbed_projectiles > 0:
 		obtained_charges += 1
 		Global.absorbed_projectiles -= 1
+		$AudioStreamPlayer2D.play()
 	if obtained_charges > (required_charges - 1):
 		is_repaired = true
 	progress_bar.value = obtained_charges

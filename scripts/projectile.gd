@@ -19,8 +19,8 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		if body.is_absorbing:
 			Global.absorbed_projectiles += 1
+			body.take_damage_during_absorption(damage)
 			queue_free()
-			print("absorbedd")
 		else:
 			body.take_damage(damage)
 			queue_free()
